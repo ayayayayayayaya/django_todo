@@ -1,0 +1,11 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+	<h3>削除</h3>
+	<form method='post'>{% csrf_token %}
+		<p>[{{object.text}}]を削除しますか？</p>
+		<input type='submit'>
+	</form>
+{% endblock %}
+
+

@@ -1,0 +1,11 @@
+{% extends 'todo/base.html' %}
+
+{% block content %}
+	{% for todo in todo_list %}
+	<p>{{todo.id}}
+		<a href='{% url "todo_detail" todo.id %}'>{{todo.text}}</a>
+		<a href='{% url "todo_update" todo.id %}'>編集</a>
+		<a href='{% url "todo_delete" todo.id %}'>削除</a>
+	</p>
+	{% endfor %}
+{% endblock %}
