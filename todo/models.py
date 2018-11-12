@@ -12,9 +12,9 @@ class Todo(models.Model):
     memo = models.TextField(null = True, blank = True)
     star = models.BooleanField(default = False)    
     choice = models.CharField(max_length = 10, blank = True, choices = CHOISES, default = 'task')
+    notice = models.DateField(null = True, blank = True)
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 
     class Meta:
         db_table = 'todos'
-

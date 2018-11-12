@@ -1,11 +1,120 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-	{% for todo in todo_list %}
-	<p>{{todo.id}}
-		<a href='{% url "todo_detail" todo.id %}'>{{todo.text}}</a>
-		<a href='{% url "todo_update" todo.id %}'>編集</a>
-		<a href='{% url "todo_delete" todo.id %}'>削除</a>
-	</p>
-	{% endfor %}
+	<ul class='nav nav-tabs mt-4'>
+		<li class='nav-item'>
+			<a href='#task' class='nav-link active' data-toggle='tab'>タスク</a>
+		</li>
+		<li class='nav-item'>
+			<a href='#anime' class='nav-link' data-toggle='tab'>見るアニメ</a>
+		</li>
+		<li class='nav-item'>
+			<a href='#book' class='nav-link' data-toggle='tab'>買う本</a>
+		</li>
+		<li>
+			<a href='#game' class='nav-link' data-toggle='tab'>買うゲーム</a>
+		</li>
+	</ul>
+
+	<div class='tab-content'>
+		<div class='tab-pane fade show active' id='task'>
+			<h3>タスク</h3>
+			<table class='table table-hover'>
+				<tr>
+					<th>内容</th>
+					<th>重要</th>
+					<th></th>
+				</tr>
+				{% for todo in todo_list %}
+				{% if todo.choice == 'task' %}	
+				<tr>
+					<td><a href='{% url "todo_detail" todo.id %}'>{{todo.text}}</a></td>
+					<td>{% if todo.star %}★{% endif %}</td>
+					<td>
+					{% if user.is_superuser %}
+					<a href='{% url "todo_update" todo.id %}' class='btn btn-outline-success btn-sm'>編集</a>
+					<a href='{% url "todo_delete" todo.id %}' class='btn btn-outline-danger btn-sm'>削除</a>
+					{% endif %}
+					</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</table>
+		</div>
+		
+		<div class='tab-pane fade' id='anime'>
+			<h3>見るアニメ</h3>
+			<table class='table table-hover'>
+				<tr>
+					<th>内容</th>
+					<th>重要</th>
+					<th></th>
+				</tr>
+				{% for todo in todo_list %}
+				{% if todo.choice == 'anime' %}
+				<tr>
+					<td><a href='{% url "todo_detail" todo.id %}'>{{todo.text}}</a></td>
+					<td>{% if todo.star %}★{% endif %}
+					<td>
+						{% if user.is_superuser %}
+						<a href='{% url "todo_update" todo.id %}' class='btn btn-outline-success btn-sm'>編集</a>
+						<a href='{% url "todo_delete" todo.id %}' class='btn btn-outline-danger btn-sm'>削除</a>
+						{% endif %}
+					</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</table>
+		</div>
+	
+		<div class='tab-pane fade' id='book'>
+			<h3>買う本</h3>
+			<table class='table table-hover'>
+				<tr>
+					<th>内容</th>
+					<th>重要</th>
+					<th></th>
+				</tr>
+				{% for todo in todo_list %}
+				{% if todo.choice == 'book' %}
+				<tr>
+					<td><a href='{% url "todo_detail" todo.id %}'>{{todo.text}}</a></td>
+					<td>{% if todo.star %}★{% endif %}</td>
+					<td>
+						{% if user.is_superuser %}
+						<a href='{% url "todo_update" todo.id %}' class='btn btn-outline-success btn-sm'>編集</a>
+						<a href='{% url "todo_delete" todo.id %}' class='btn btn-outline-danger btn-sm'>削除</a>
+						{% endif %}
+					</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</table>
+		</div>
+
+		<div class='tab-pane fade' id='game'>
+			<h3>買うゲーム</h3>
+			<table class='table table-hover'>
+				<tr>
+					<th>内容</th>
+					<th>重要</tr>
+					<th></th>
+				</tr>
+				{% for todo in todo_list %}
+				{% if todo.choice == 'game' %}
+				<tr>
+					<td><a href='{% url "todo_detail" todo.id %}'>{{todo.text}}</a></td>
+					<td>{% if todo.star %}★{% endif %}</td>
+					<td>
+						{% if user.is_superuser %}
+						<a href='{% url "todo_update" todo.id %}' class='btn btn-outline-success btn-sm'>編集</a>
+						<a href='{% url "todo_delete" todo.id %}' class='btn btn-outline-danger btn-sm'>削除</a>
+						{% endif %}
+					</td>
+				</tr>
+				{% endif %}
+				{% endfor %}
+			</table>
+		</div>
+	</div>
 {% endblock %}

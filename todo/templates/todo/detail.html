@@ -1,13 +1,39 @@
 {% extends 'todo/base.html' %}
 
 {% block content %}
-	<h3>詳細</h3>
-	<p>{{todo}}</p>
-	<p>{{todo.text}}</p>
-	<p>{{todo.memo}}</p>
-	<p>{{todo.star}}</p>
-	<p>{{todo.choice}}</p>
-	<p>{{todo.created_at}}</p>
-	<p>{{todo.updated_at}}</p>
+	<h3 class='mt-4'>詳細</h3>
+	<table class='table'>
+		<tr>
+			<th>ToDo</th>
+			<td>{{todo}}</td>
+		</tr>
+		<tr>
+			<th>内容</th>
+			<td>{{todo.text}}</td>
+		</tr>
+		<tr>
+			<th>メモ</th>
+			<td>{{todo.memo | linebreaksbr}}</td>
+		</tr>
+		<tr>
+			<th>重要</th>
+			<td>{% if todo.star %}★{% endif %}</td>
+		</tr>
+		<tr>
+			<th>種別</th>
+			<td>{{todo.choice}}</td>
+		</tr>
+		<tr>
+			<th>通知</th>
+			<td>{{todo.notice}}</td>
+		</tr>
+		<tr>
+			<th>作成日時</th>
+			<td>{{todo.created_at}}</td>
+		</tr>
+		<tr>
+			<th>更新日時</th>
+			<td>{{todo.updated_at}}</td>
+		</tr>
 {% endblock %}
 
