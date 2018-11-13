@@ -9,6 +9,7 @@ from .forms import TodoForm
 class TodoListView(ListView):
     model = Todo
     template_name = 'todo/list.html'
+    ordering = ['-star', 'deadline', '-created_at']
 
 class TodoDetailView(DetailView):
     model = Todo
