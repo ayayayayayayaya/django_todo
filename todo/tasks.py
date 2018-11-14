@@ -13,9 +13,16 @@ def notify_user():
     now = datetime.datetime.now()
     today = now.strftime('%Y-%m-%d')
     todo = Todo.objects.filter(deadline = str(today))
-   
     for i in todo:
         msg += i.text + '\n'
+        if i.choice == 'anime':
+            Todo.objects.create(text = i.text, 
+                                memo = i.memo,
+                                star = i.star,
+                                choice = i.choice, 
+                                deadline = i.deadline + datetime.timedelta(weeks = 1)
+                                )
+            i.delete()
     else:
         msg += 'です，'
     

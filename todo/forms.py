@@ -1,6 +1,6 @@
 from django.forms import ModelForm , TextInput, Textarea, CheckboxInput, Select, SelectDateWidget
 from .models import Todo
-import bootstrap_datepicker_plus as datetimepicker
+#import bootstrap_datepicker_plus as datetimepicker
 
 class TodoForm(ModelForm):
     class Meta:
